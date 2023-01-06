@@ -32,27 +32,10 @@ def downsample_tiff_avg(tiff, n=4):
     plt.title('downsampled frame example')
     plt.show()
     tiff = np.array(tiff_ds)
-
-    
+        
     return tiff
 
 
-def poiss_train(tau, t_max=10):
-    # tau - parameter of exponential distribution
-    # t_max - duration of spike train
-    
-    st = []
-    st.append(np.random.exponential(tau)) # first spike time
-    count = 0
-    
-    while st[count] < t_max:
-        st.append(st[count] + np.random.exponential(tau)) # subsequent spike times with ISIs from exponential distribution
-        count += 1
-    
-    # removing final spike (outside [0, 10])
-    st = st[0:-1]
-    
-    return np.array(st), count
 
 # from Williams cvNMF implementation (http://alexhwilliams.info/itsneuronalblog/2018/02/26/crossval/)
 
@@ -134,29 +117,4 @@ def cv_pca(data, rank, M=None, p_holdout=0.3, nonneg=False):
     test_err = np.mean(resid[~M]**2)
     return U, Vt, train_err, test_err
 
-def plot_nmf_t(nmf_t, gt_acts=None, plot_gt=False):
 
-    fig, axs = plt.subplots(nmf_t.components_.shape[0], 1, figsize=(10, nmf_t.components_.shape[0]))
-
-    for i in range(nmf_t.components_.shape[0]):
-        axs[i].plot(nmf_t.components_[i, :]/np.max(nmf_t.components_[i, :]), c='C1')
-        if plot_gt:
-            axs[i].plot(gt_acts[i]/np.max(gt_acts[i]), c='C0')
-            
-        axs[i].axis('off')
-
-    plt.show()
-
-def plot_nmf_px(nmf_px, xy_px):
-    
-    n_components = nmf_px.components_.shape[0]
-    #plotting nmf components
-    fig, axs = plt.subplots(n_components, dpi=1000)
-
-    rois_auto = []
-
-    for i in range(0,n_components):
-        loading = nmf_px.components_[i,:]
-        loading_img = loading.reshape(xy_px, xy_px)
-        axs[i].imshow(loading_img)
-        axs[i].axis('off')
