@@ -70,3 +70,13 @@ def get_roi_conts(rois_auto):
 
     
     return conts, n_conts
+
+def get_loading_times(nmf_t):
+    loading_times = []
+    n_components = nmf_t.n_components
+
+    for i in range(n_components):
+        loading_time = nmf_t.components_[i, :]
+        loading_times.append(loading_time)
+
+    return loading_times

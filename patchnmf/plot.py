@@ -14,16 +14,70 @@ def plot_nmf_t(nmf_t, gt_acts=None, plot_gt=False):
 
     plt.show()
 
-# def plot_nmf_px(nmf_px, xy_px):
+def plot_rois_overlay(rois_auto, tiff_shape):
+
+    n, x, y = tiff_shape
+    plt.figure(figsize=(10,10))
+
+    plt.figure(figsize=(10,10))
+
+    for (i, roi) in enumerate(reversed(rois_auto)): # reversed to plot more obvious components first
+        roi_scat = np.nonzero(roi)
+        plt.scatter(roi_scat[1], -roi_scat[0], marker='s', s=9, alpha=0.1) # - is because of image processing convention
+        plt.ylim((-y, 0))
+        plt.xlim((0,x))
+        plt.axis('off')
+    plt.show()
+
+def plot_roi_conts_largest(conts, tiff_shape):
     
-#     n_components = nmf_px.components_.shape[0]
-#     #plotting nmf components
-#     fig, axs = plt.subplots(n_components, dpi=1000)
+    # plots the largest contour in each ROI
+    
+    n, x, y = tiff_shape
 
-#     rois_auto = []
+    plt.figure(figsize=(10,10))
 
-#     for i in range(0,n_components):
-#         loading = nmf_px.components_[i,:]
-#         loading_img = loading.reshape(xy_px, xy_px)
-#         axs[i].imshow(loading_img)
-#         axs[i].axis('off')
+    for (i, roi_cont) in enumerate(conts):
+
+        plt.plot(roi_cont[0][:,1], roi_cont[0][:,0], linewidth=5, alpha=0.7)
+
+        plt.ylim((y, 0))
+        plt.xlim((0,x))
+        plt.axis('off')
+
+def plot_roi_area_hist(rois_auto, n_bins=10, resolution=1.2):
+    roi_areas = [np.sum(roi)*(resolution**2) for roi in rois_auto]
+    plt.hist(roi_areas, n_bins);
+    plt.title('patch area distribution')
+    plt.xlabel('area (um^2)')
+
+def plot_px_nmf_corr(nmf_px):
+    plt.figure(figsize=(3,3), dpi=200)
+    nmf_px_corrmat = np.corrcoef(nmf_px.components_) # correlation matrix of this
+    plt.imshow(nmf_px_corrmat, vmin=0, vmax=1)
+    plt.colorbar() 
+    plt.xlabel('NMF component')
+    plt.ylabel('NMF component')
+    plt.xticks([])
+    plt.yticks([])
+
+def plot_roi_loading_time(rois_auto, loading_times):
+    n_components = len(rois_auto)
+
+    fig, axs = plt.subplots(n_components, 2, figsize=(5, n_components), width_ratios=[1, 5], dpi=200)
+
+    for (i, loading_time) in enumerate(loading_times):
+        axs[i,0].imshow(rois_auto[i], cmap='gray')
+        axs[i,0].xaxis.set_ticklabels('') 
+        axs[i,0].yaxis.set_ticklabels('') 
+        axs[i,0].xaxis.set_ticks([]) 
+        axs[i,0].yaxis.set_ticks([]) 
+
+        axs[i,1].plot(loading_time, c='grey')
+        axs[i,1].axis('off')
+
+        if i == 0:
+            axs[i,0].set_title('PX component', fontsize=7)
+            axs[i,1].set_title('T component (activation of PX component over time)', fontsize=7)
+
+    plt.show()
