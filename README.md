@@ -13,3 +13,15 @@ This also performs cross-validation on the NMF. Here's a result from the above s
 
 
 <img src="https://github.com/juremaj/barrel-patch_analysis/blob/main/docs/media/cv_nmf.png" alt="drawing" width="300"/>
+
+
+# Installation
+
+You can set up the environment simply by using the environment.yaml file (see conda documentation), which will ensure the same versions are used. Alternatively we can also just install the latest versions of the dependencies by running:
+
+```
+conda install -c conda-forge jupyterlab
+conda install -c conda-forge numpy
+conda install -c conda-forge matplotlib
+conda install -c conda-forge scikit-learn
+```
