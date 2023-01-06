@@ -2,11 +2,11 @@
 Code for nonnegative least squares by block-pivoting.
 """
 import numpy as np
-import scipy.optimize as opt
+# import scipy.optimize as opt
 import scipy.sparse as sps
 import numpy.linalg as nla
-import scipy.linalg as sla
-import time
+# import scipy.linalg as sla
+# import time
 
 
 """

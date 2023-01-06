@@ -14,16 +14,16 @@ def plot_nmf_t(nmf_t, gt_acts=None, plot_gt=False):
 
     plt.show()
 
-def plot_nmf_px(nmf_px, xy_px):
+# def plot_nmf_px(nmf_px, xy_px):
     
-    n_components = nmf_px.components_.shape[0]
-    #plotting nmf components
-    fig, axs = plt.subplots(n_components, dpi=1000)
+#     n_components = nmf_px.components_.shape[0]
+#     #plotting nmf components
+#     fig, axs = plt.subplots(n_components, dpi=1000)
 
-    rois_auto = []
+#     rois_auto = []
 
-    for i in range(0,n_components):
-        loading = nmf_px.components_[i,:]
-        loading_img = loading.reshape(xy_px, xy_px)
-        axs[i].imshow(loading_img)
-        axs[i].axis('off')
+#     for i in range(0,n_components):
+#         loading = nmf_px.components_[i,:]
+#         loading_img = loading.reshape(xy_px, xy_px)
+#         axs[i].imshow(loading_img)
+#         axs[i].axis('off')

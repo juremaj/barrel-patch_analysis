@@ -1,18 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import random
-from sklearn.decomposition import PCA, NMF
+# import random
+# from sklearn.decomposition import PCA, NMF
 from matplotlib import animation
-from scipy.ndimage import gaussian_filter, convolve1d
+# from scipy.ndimage import gaussian_filter, convolve1d
 from scipy.signal import convolve2d
 import os
 
 # for cvNMF
-from numpy.random import randn, rand
-from scipy.optimize import minimize
-from devenw.nnls import nnlsm_blockpivot as nnlstsq
-import itertools
-from scipy.spatial.distance import cdist
+# from numpy.random import randn, rand
+# from scipy.optimize import minimize
+from patchnmf.analyse.nnls import nnlsm_blockpivot as nnlstsq
+# import itertools
+# from scipy.spatial.distance import cdist
 
 
 def downsample_tiff_avg(tiff, n=4):
@@ -25,14 +25,15 @@ def downsample_tiff_avg(tiff, n=4):
         #tiff_ds = np.concatenate((tiff_ds, this_tiff_ds))
         tiff_ds.append(this_tiff_ds)
 
-    plt.imshow(tiff[i,:,:])
+    tiff_ds = np.array(tiff_ds)
+
+    plt.imshow(np.mean(tiff, 0), cmap='gray')
     plt.title('original frame example')
     plt.show()
-    plt.imshow(this_tiff_ds)
+    plt.imshow(np.mean(tiff_ds, 0), cmap='gray')
     plt.title('downsampled frame example')
     plt.show()
-    tiff = np.array(tiff_ds)
-        
+
     return tiff
 
 
