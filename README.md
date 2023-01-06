@@ -11,7 +11,5 @@ I have transferred (probably most of) the parts of the devenw library that are u
 
 This also performs cross-validation on the NMF. Here's a result from the above simulation where the ground truth number of components is known:
 
-![](https://github.com/juremaj/barrel-patch_analysis/blob/main/docs/media/cv_nmf.png | width=100)  
 
-
-<img src="https://github.com/juremaj/barrel-patch_analysis/blob/main/docs/media/cv_nmf.png" alt="drawing" width="200"/>
+<img src="https://github.com/juremaj/barrel-patch_analysis/blob/main/docs/media/cv_nmf.png" alt="drawing" width="500"/>
