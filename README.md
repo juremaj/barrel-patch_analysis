@@ -24,4 +24,5 @@ conda install -c conda-forge jupyterlab
 conda install -c conda-forge numpy
 conda install -c conda-forge matplotlib
 conda install -c conda-forge scikit-learn
+conda install -c conda-forge scikit-image
 ```
