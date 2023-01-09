@@ -1,20 +1,25 @@
 import numpy as np
-# import random
-# from sklearn.decomposition import PCA, NMF
-from matplotlib import animation
-# from scipy.ndimage import gaussian_filter, convolve1d
-from scipy.signal import convolve2d
-import os
 
-# for cvNMF
-# from numpy.random import randn, rand
-# from scipy.optimize import minimize
 from patchnmf.analyse.nnls import nnlsm_blockpivot as nnlstsq
-# import itertools
-# from scipy.spatial.distance import cdist
+import itertools
 
 
 # from Williams cvNMF implementation (http://alexhwilliams.info/itsneuronalblog/2018/02/26/crossval/)
+
+def cv_nmf(movie_flat, r_max, step, replicates):
+    
+    ranks = np.arange(0, r_max, step)
+
+    train_err = []
+    test_err = []
+            
+    for rnk, _ in itertools.product(ranks, range(replicates)):
+        tr, te = cv_pca(movie_flat, rnk, nonneg=True)[2:]
+        train_err.append((rnk, tr))     
+        test_err.append((rnk, te))
+        print(f'finished running for rank: {rnk} out of {r_max} (step = {step})')
+
+    return train_err, test_err
 
 def censored_lstsq(A, B, M):
     """Solves least squares problem with missing data in B
