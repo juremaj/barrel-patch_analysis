@@ -1,6 +1,32 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+def plot_nmfpx_blur_thr(loading_imgs, loading_imgs_filt, rois_auto):
+    n_components = len(loading_imgs)
+
+    all_im_list = [loading_imgs, loading_imgs_filt, rois_auto]
+
+    fig, axs = plt.subplots(n_components, 3, figsize=(9, 3*n_components))
+
+    for (i, im_list) in enumerate(all_im_list): # why does this need to be indented????
+        for (j, im) in enumerate(im_list):
+            axs[j,i].imshow(im, cmap='gray')
+
+
+            axs[j,i].xaxis.set_ticklabels('') 
+            axs[j,i].yaxis.set_ticklabels('') 
+            axs[j,i].xaxis.set_ticks([]) 
+            axs[j,i].yaxis.set_ticks([]) 
+
+            if i == 0:
+                axs[j,i].set_ylabel(f'NMF {i}')
+
+            if j == 0:
+                axs[j,0].set_title(f'Raw pxNMF')
+                axs[j,1].set_title(f'Smoothed pxNMF')
+                axs[j,2].set_title(f'Sm. and thr. pxNMF')
+
+
 def plot_nmf_t(nmf_t, gt_acts=None, plot_gt=False):
 
     fig, axs = plt.subplots(nmf_t.components_.shape[0], 1, figsize=(10, nmf_t.components_.shape[0]))
