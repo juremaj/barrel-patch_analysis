@@ -19,7 +19,7 @@ def plot_nmfpx_blur_thr(loading_imgs, loading_imgs_filt, rois_auto):
             axs[j,i].yaxis.set_ticks([]) 
 
             if i == 0:
-                axs[j,i].set_ylabel(f'NMF {i}')
+                axs[j,i].set_ylabel(f'NMF {j}')
 
             if j == 0:
                 axs[j,0].set_title(f'Raw pxNMF')
@@ -87,10 +87,11 @@ def plot_px_nmf_corr(nmf_px):
     plt.xticks([])
     plt.yticks([])
 
-def plot_roi_loading_time(rois_auto, loading_times):
+def plot_roi_loading_time(rois_auto, loading_times, title='NOTE: the L and R do not necc. correspond'):
     n_components = len(rois_auto)
 
     fig, axs = plt.subplots(n_components, 2, figsize=(5, n_components), width_ratios=[1, 5], dpi=200)
+    plt.suptitle(title, fontsize=10)
 
     for (i, loading_time) in enumerate(loading_times):
         axs[i,0].imshow(rois_auto[i], cmap='gray')
@@ -105,5 +106,5 @@ def plot_roi_loading_time(rois_auto, loading_times):
         if i == 0:
             axs[i,0].set_title('PX component', fontsize=7)
             axs[i,1].set_title('T component (activation of PX component over time)', fontsize=7)
-
+    
     plt.show()
