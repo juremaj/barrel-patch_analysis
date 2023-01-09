@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 # import random
 # from sklearn.decomposition import PCA, NMF
 from matplotlib import animation
@@ -13,29 +12,6 @@ import os
 from patchnmf.analyse.nnls import nnlsm_blockpivot as nnlstsq
 # import itertools
 # from scipy.spatial.distance import cdist
-
-
-def downsample_tiff_avg(tiff, n=4):
-
-    tiff_ds = []
-    for i in range(tiff.shape[0]):
-        kernel = np.ones((n, n))
-        convolved = convolve2d(tiff[i,:,:], kernel, mode='valid')
-        this_tiff_ds = convolved[::n, ::n] / n
-        #tiff_ds = np.concatenate((tiff_ds, this_tiff_ds))
-        tiff_ds.append(this_tiff_ds)
-
-    tiff_ds = np.array(tiff_ds)
-
-    plt.imshow(np.mean(tiff, 0), cmap='gray')
-    plt.title('original frame example')
-    plt.show()
-    plt.imshow(np.mean(tiff_ds, 0), cmap='gray')
-    plt.title('downsampled frame example')
-    plt.show()
-
-    return tiff
-
 
 
 # from Williams cvNMF implementation (http://alexhwilliams.info/itsneuronalblog/2018/02/26/crossval/)
