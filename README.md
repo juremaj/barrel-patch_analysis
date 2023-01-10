@@ -43,6 +43,13 @@ conda install -c conda-forge scikit-learn
 conda install -c conda-forge scikit-image
 ```
 
+Finally we need to install the local `patchnmf` library by running:
+
+```
+pip install -e .
+```
+
+
 # Usage
 
 This repo contains some useful functions for loading data from tiffs, preprocessing them, running NMf (with cross-validation), running simulations etc. There are two demo notebooks going through the main functionalities, these can be found in:
