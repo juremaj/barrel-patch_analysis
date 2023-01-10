@@ -13,13 +13,27 @@ The code here also performs cross-validation on the NMF. Here's a result from th
 
 # Installation
 
+First clone the repo and cd into the directory:
+
+```
+git clone https://github.com/juremaj/barrel-patch_analysis
+cd barrel-patch_analysis
+```
+
 You can set up the environment simply by using the environment.yaml file:
 
 `conda env create -f environment.yml`
 
 This will ensure the same versions of dependencies are used. But it can also be a bit messy since there are a lot of JupyterLab dependencies installed + it might be platform dependent (the one here is tested only on Linux).
 
-Alternatively we can also just install the latest versions of the dependencies by running:
+Alternatively we can also just set up a new environment, activate it:
+
+```
+conda create --name patchnmf
+conda activate patchnmf
+```
+
+and install the latest versions of the dependencies by running:
 
 ```
 conda install -c conda-forge jupyterlab
