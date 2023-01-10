@@ -33,6 +33,6 @@ conda install -c conda-forge scikit-image
 
 This repo contains some useful functions for loading data from tiffs, preprocessing them, running NMf (with cross-validation), running simulations etc. There are two demo notebooks going through the main functionalities, these can be found in:
 
-`notebooks_demo`
+`notebooks_demo/`
 
 It's best to leave these unchanged and use `notebooks_dev` to develop new code (for example there is a notebook there that can be used to compare the NMF outputs across datasets. You can then always refer to the use cases in `notebooks_demo` if something gets messed up.
