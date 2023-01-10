@@ -66,4 +66,4 @@ This repo contains some useful functions for loading data from tiffs, preprocess
 
 `notebooks_demo/`
 
-It's best to leave these unchanged and use `notebooks_dev` to develop new code (for example there is a notebook there that can be used to compare the NMF outputs across datasets. You can then always refer to the use cases in `notebooks_demo` if something gets messed up.
+It's best to leave these unchanged and use `notebooks_dev` to develop new code (for example there is a notebook there that can be used to compare the NMF outputs across datasets). Maybe it would also make sense to add some development notebooks similar to the ones in `notebooks_demo/` that could be used for additional analysis of single datasets (for example if we would want to add some interesting quantifications frequency of activation, pairwise correlations, overlap etc.). The benefit of having a separate development folder is that in case something gets messed up you can then easily refer to the use cases in `notebooks_demo`.
