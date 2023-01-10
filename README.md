@@ -17,7 +17,9 @@ This also performs cross-validation on the NMF. Here's a result from the above s
 
 # Installation
 
-You can set up the environment simply by using the environment.yaml file (see conda documentation), which will ensure the same versions are used. Alternatively we can also just install the latest versions of the dependencies by running:
+You can set up the environment simply by using the environment.yaml file (run `conda env create -f environment. yml`), which will ensure the same versions are used. But this is also a bit messy since there are a lot of JupyterLab dependencies installed + it might be platform dependent (the one here is tested only on Linux).
+
+Alternatively we can also just install the latest versions of the dependencies by running:
 
 ```
 conda install -c conda-forge jupyterlab
