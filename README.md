@@ -52,7 +52,7 @@ pip install -e .
 
 # Usage
 
-First we need to add some data, within a `data` folder under `barrel-patch_analysis`. This repo assumes the same organization as `deve-networks` (see [readme](https://github.com/juremaj/deve-networks#organising-data)). Once we have some data installed we can simply lunch jupyter lab:
+First we need to add some data, within a `data` folder under `barrel-patch_analysis`. This repo assumes the same organization as `deve-networks` (see [readme](https://github.com/juremaj/deve-networks#organising-data)). Once we have access to some data, we can simply lunch jupyter lab from within the conda environment:
 
 ```
 jupyter lab
