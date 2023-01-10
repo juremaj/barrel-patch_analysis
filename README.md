@@ -1,12 +1,11 @@
 # barrel-patch_analysis
 Code I contributed for Sofia's project containing NMF patch analysis, some simulations etc.
 
+Example gif of a patch simulation used to benchmark patch-extraction techniques:
+
 ![](https://github.com/juremaj/barrel-patch_analysis/blob/main/docs/media/sim_anim.gif)
 
-(Example gif of a patch simulation used to benchmark patch-extraction techniques)
-
-
-This also performs cross-validation on the NMF. Here's a result from the above simulation where the ground truth number of components is known:
+The code here also performs cross-validation on the NMF. Here's a result from the above simulation where the ground truth number of components is known:
 
 
 <img src="https://github.com/juremaj/barrel-patch_analysis/blob/main/docs/media/cv_nmf.png" alt="drawing" width="300"/>
