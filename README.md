@@ -52,6 +52,16 @@ pip install -e .
 
 # Usage
 
+First we need to add some data, within a `data` folder under `barrel-patch_analysis`. This repo assumes the same organization as `deve-networks` (see [readme](https://github.com/juremaj/deve-networks#organising-data)). Once we have some data installed we can simply lunch jupyter lab:
+
+```
+jupyter lab
+```
+
+And start doing some analysis :)
+
+## Demos
+
 This repo contains some useful functions for loading data from tiffs, preprocessing them, running NMf (with cross-validation), running simulations etc. There are two demo notebooks going through the main functionalities, these can be found in:
 
 `notebooks_demo/`
