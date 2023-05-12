@@ -5,7 +5,7 @@ from matplotlib import animation
 from scipy.stats import zscore
 
 
-def plot_nmfpx_blur_thr(loading_imgs, loading_imgs_filt, rois_auto):
+def plot_nmfpx_blur_thr(loading_imgs, loading_imgs_filt, rois_auto, save_dir=None):
     n_components = len(loading_imgs)
 
     all_im_list = [loading_imgs, loading_imgs_filt, rois_auto]
@@ -29,7 +29,12 @@ def plot_nmfpx_blur_thr(loading_imgs, loading_imgs_filt, rois_auto):
                 axs[j,0].set_title(f'Raw pxNMF')
                 axs[j,1].set_title(f'Smoothed pxNMF')
                 axs[j,2].set_title(f'Sm. and thr. pxNMF')
-
+    
+    
+    if save_dir != None:
+        print('Saving nmfpx_blur_thr.png ...')
+        plt.savefig(f'{save_dir}/nmfpx_blur_thr.png')
+        
 
 def plot_nmf_t(nmf_t, gt_acts=None, plot_gt=False):
 
@@ -44,7 +49,7 @@ def plot_nmf_t(nmf_t, gt_acts=None, plot_gt=False):
 
     plt.show()
 
-def plot_rois_overlay(rois_auto, tiff_shape):
+def plot_rois_overlay(rois_auto, tiff_shape, save_dir=None):
 
     n, x, y = tiff_shape
     plt.figure(figsize=(10,10))
@@ -57,15 +62,22 @@ def plot_rois_overlay(rois_auto, tiff_shape):
         plt.ylim((-y, 0))
         plt.xlim((0,x))
         plt.axis('off')
-    plt.show()
+    
+    if save_dir != None:
+        print('Saving rois_overlay.png ...')
+        plt.savefig(f'{save_dir}/rois_overlay.png')
 
-def plot_roi_conts_largest(conts, tiff_shape):
+def plot_roi_conts_largest(conts, tiff_shape, save_dir=None):
     
     # plots the largest contour in each ROI
     
     n, x, y = tiff_shape
 
     plt.figure(figsize=(10,10))
+    
+    if save_dir != None:
+        print('Saving rois_conts_largest.png ...')
+        plt.savefig(f'{save_dir}/rois_conts_largest.png')
 
     for (i, roi_cont) in enumerate(conts):
 
@@ -74,14 +86,19 @@ def plot_roi_conts_largest(conts, tiff_shape):
         plt.ylim((y, 0))
         plt.xlim((0,x))
         plt.axis('off')
-
-def plot_roi_area_hist(rois_auto, n_bins=10, resolution=1.2):
+        
+        
+def plot_roi_area_hist(rois_auto, n_bins=10, resolution=1.2, save_dir=None):
     roi_areas = [np.sum(roi)*(resolution**2) for roi in rois_auto]
     plt.hist(roi_areas, n_bins);
     plt.title('patch area distribution')
     plt.xlabel('area (um^2)')
+    
+    if save_dir != None:
+        print('Saving roi_area_hist.png ...')
+        plt.savefig(f'{save_dir}/roi_area_hist.png')
 
-def plot_px_nmf_corr(nmf_px):
+def plot_px_nmf_corr(nmf_px, save_dir=None):
     plt.figure(figsize=(3,3), dpi=200)
     nmf_px_corrmat = np.corrcoef(nmf_px.components_) # correlation matrix of this
     plt.imshow(nmf_px_corrmat, vmin=0, vmax=1)
@@ -90,6 +107,10 @@ def plot_px_nmf_corr(nmf_px):
     plt.ylabel('NMF component')
     plt.xticks([])
     plt.yticks([])
+    
+    if save_dir != None:
+        print('Saving px_nmf_corr.png ...')
+        plt.savefig(f'{save_dir}/rx_nmf_corr.png')
 
 def plot_roi_loading_time(rois_auto, loading_times, title='NOTE: the L and R do not necc. correspond'):
     n_components = len(rois_auto)

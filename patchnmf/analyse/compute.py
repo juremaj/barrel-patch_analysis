@@ -17,6 +17,9 @@ def downsample_tiff_avg(tiff, n=4):
         this_tiff_ds = convolved[::n, ::n] / n
         #tiff_ds = np.concatenate((tiff_ds, this_tiff_ds))
         tiff_ds.append(this_tiff_ds)
+        
+        if i % 100 == 0:
+            print(f'Done with {i} frames') #to check progress
 
     tiff_ds = np.array(tiff_ds)
 
@@ -27,7 +30,7 @@ def downsample_tiff_avg(tiff, n=4):
     plt.title('downsampled frame example')
     plt.show()
 
-    return tiff
+    return tiff_ds
 
 def compute_nmfpx_blur_thr(nmf_px, tiff_shape, blur_std=6.5):
     _, x, y = tiff_shape

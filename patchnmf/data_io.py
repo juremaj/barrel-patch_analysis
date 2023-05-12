@@ -1,7 +1,7 @@
 import os 
 import numpy as np
 from skimage import io
-
+from skimage.util import img_as_uint
 
 def get_tiff(ds):
     tiff_all = []
@@ -9,8 +9,10 @@ def get_tiff(ds):
         print(ti)
         if i == 0:
             tiff = io.imread(f'data/{ds}/suite2p/plane0/reg_tif/{ti}',  plugin='pil') # initialise tiff
+            tiff = img_as_uint(tiff)
         else:
             tiff_i = io.imread(f'data/{ds}/suite2p/plane0/reg_tif/{ti}',  plugin='pil')
+            tiff_i = img_as_uint(tiff_i)
             tiff = np.concatenate((tiff, tiff_i))
             print(tiff_i.shape)
         
