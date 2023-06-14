@@ -6,10 +6,12 @@ import os
 from scipy.stats import zscore
 from scipy.ndimage import gaussian_filter, convolve1d
 
-def poiss_train(tau, t_max=10):
+def poiss_train(tau, t_max=10, rand_seed=10):
     # tau - parameter of exponential distribution
     # t_max - duration of spike train
     
+    np.random.seed(rand_seed)
+
     st = []
     st.append(np.random.exponential(tau)) # first spike time
     count = 0
@@ -31,7 +33,8 @@ def make_sim_path(sim_id):
     return sim_path
 
 # running simulation
-def run_simulation(params):
+def run_simulation(params, rand_seed=10):
+    random.seed(rand_seed)
     # t = np.arange(0,params.t_max)
     movie_blank = np.zeros((params.xy_px, params.xy_px, params.t_max))
     movie = np.copy(movie_blank)
@@ -48,7 +51,7 @@ def run_simulation(params):
         patch_y = random.randrange(patch_d, params.xy_px-patch_d)
 
         # randomly generating the activation of patch in time
-        act_t,_ = poiss_train(params.poiss_tau, t_max=params.t_max)
+        act_t,_ = poiss_train(params.poiss_tau, t_max=params.t_max, rand_seed=rand_seed+i)
 
         # computing contribution of patch to movie and adding to final movie
         patch_movie = np.copy(movie_blank)
